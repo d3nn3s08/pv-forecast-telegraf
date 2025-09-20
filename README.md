@@ -23,7 +23,7 @@ Hinweis: Alle Grafana-Konfigurationen zu Minimal- und Maximalwerten sind auf die
 
 Telegraf, InfluxDB und Grafana Installation
 
-Die Einrichtung des TIG-Stacks (Telegraf, InfluxDB, Grafana) kann über beliebige Anleitungen erfolgen, z. B. diese Suche
+Die Einrichtung des TIG-Stacks (Telegraf, InfluxDB, Grafana) kann über beliebige Anleitungen erfolgen, z. B. [diese Suche]([url](https://duckduckgo.com/?t=h_&q=setup+tig+stack&ia=web))
 .
 
 InfluxDB
