@@ -8,7 +8,7 @@ Dieses README beschreibt, wie Daten von einem Fronius Symo GEN24 10.0 Wechselric
 
 Fronius Setup
 
-Wechselrichter: Symo GEN24 10.0 (Firmware >= ROW 1.36.6-1)
+Wechselrichter: Fronius GEN24 4.0 (Firmware >= ROW 1.36.6-1)
 
 Fronius JSON API (v1) aktiviert. Details siehe Fronius Solar API Dokumentation
 .
@@ -128,26 +128,31 @@ Datei hochladen.
 
 Standardmäßig zeigt das Dashboard den aktuellen Tag und aktualisiert alle 5 Sekunden. Kurze Refresh-Zeit, weil das Power Flow-Panel Werte direkt aus der Fronius JSON API abruft.
 
+
+
+Dashboard Screenshots
+
+
 Credits
 Grafana
 
 Grafana
 
-Basierend auf: Powerwall Dashboard by jasonacox
+Basierend auf: [Powerwall Dashboard by jasonacox]([url](https://github.com/jasonacox/Powerwall-Dashboard))
 
 Telegraf und Influx
 
 Telegraf
 
-InfluxDB
+[InfluxDB](url)
 
 Basierend auf:
 
-Fronius-to-Influx by szymi-
+[Fronius-to-Influx by szymi-](url)
 
-Solar Panel Monitoring with Telegraf
+S[olar Panel Monitoring with Telegraf](url)
 
-How I Created a Telegraf Plugin to Monitor Solar Panels
+H[ow I Created a Telegraf Plugin to Monitor Solar Panels](url)
 
 Readme Verbesserungen
 
