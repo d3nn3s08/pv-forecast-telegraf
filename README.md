@@ -10,7 +10,7 @@ Fronius Setup
 
 Wechselrichter: Fronius GEN24 4.0 (Firmware >= ROW 1.36.6-1)
 
-Fronius JSON API (v1) aktiviert. Details siehe Fronius Solar API Dokumentation
+Fronius JSON API (v1) aktiviert. Details siehe [Fronius Solar API Dokumentation]([url](https://www.fronius.com/en/solar-energy/installers-partners/technical-data/all-products/system-monitoring/open-interfaces/fronius-solar-api-json-))
 .
 
 Smart Meter: TS 65A-3
