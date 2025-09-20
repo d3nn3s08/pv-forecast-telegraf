@@ -65,13 +65,15 @@ Energiepreise
 
 Die Energiepreise werden benötigt, um Einsparungen zu berechnen. Die Genauigkeit ist auf tägliche Updates begrenzt. Die Preise werden per CSV über die InfluxDB-Importfunktion eingespielt. Beispiel CSV-Format:
 
-`#group,false,false,true,true,false,false,true,true,true
+```csv
+#group,false,false,true,true,false,false,true,true,true
 #datatype,string,long,dateTime:RFC3339,dateTime:RFC3339,dateTime:RFC3339,double,string,string,string
 #default,mean,,,,,,,,
 ,result,table,_start,_stop,_time,_value,_field,_measurement,unit
-,,0,2023-07-01T00:00:00+02:00,2023-07-01T00:00:00+02:00,2023-07-01T00:00:00+02:00,00.078,sell,electricity,Cent/kWh
-,,0,2021-10-02T00:00:00+02:00,2021-10-02T00:00:00+02:00,2021-10-02T00:00:00+02:00,00.400,buy,electricity,Cent/kWh
-`
+,,0,2023-04-01T00:00:00+02:00,2023-04-01T00:00:00+02:00,2023-04-01T00:00:00+02:00,14.457,sell,electricity,Cent/kWh
+,,0,2023-07-01T00:00:00+02:00,2023-07-01T00:00:00+02:00,2023-07-01T00:00:00+02:00,13.691,sell,electricity,Cent/kWh
+,,0,2021-10-02T00:00:00+02:00,2021-10-02T00:00:00+02:00,2021-10-02T00:00:00+02:00,21.211,buy,electricity,Cent/kWh
+```
 >Hinweis: Influxdb Line Protocol habe ich genutzt da ich feste preiße nutze bzw. habe
 
 Grafana
