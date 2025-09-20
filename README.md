@@ -49,7 +49,7 @@ Passe die InfluxDB-Ausgabe in Telegraf nach Bedarf an:
     urls = ["http://127.0.0.1:8086"]
     token = "change_me"
     organization = "default"
-`Hinweis: Die IP des Symo GEN24 10.0 wird in meinem Netzwerk über den Hostnamen inverter aufgelöst. Entweder du richtest dein Netzwerk genauso ein oder änderst die IP in der Konfiguration.
+`Hinweis: Die IP des Symo GEN24 4.0 wird in meinem Netzwerk über den Hostnamen inverter aufgelöst. Entweder du richtest dein Netzwerk genauso ein oder änderst die IP in der Konfiguration.
 
 Forecast
 
@@ -108,7 +108,7 @@ Infinity Datasource (keine weitere Konfiguration)
 
 Sun and Moon (Latitude/Longitude anpassen)
 
-Hinweis: Die IP des Symo GEN24 10.0 wird in meinem Netzwerk über inverter aufgelöst. Passe ggf. Power Flow-Panel und Battery & Grid-Panel an deine IP an.
+Hinweis: Die IP des Symo GEN24 4.0 wird in meinem Netzwerk über inverter aufgelöst. Passe ggf. Power Flow-Panel und Battery & Grid-Panel an deine IP an.
 
 Dashboard
 
