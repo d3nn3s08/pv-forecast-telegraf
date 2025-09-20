@@ -10,7 +10,7 @@ Fronius Setup
 
 Wechselrichter: Fronius GEN24 4.0 (Firmware >= ROW 1.36.6-1)
 
-Fronius JSON API (v1) aktiviert. Details siehe [Fronius Solar API Dokumentation]([url](https://www.fronius.com/en/solar-energy/installers-partners/technical-data/all-products/system-monitoring/open-interfaces/fronius-solar-api-json-))
+Fronius JSON API (v1) aktiviert. Details siehe [Fronius Solar API Dokumentation](https://www.fronius.com/en/solar-energy/installers-partners/technical-data/all-products/system-monitoring/open-interfaces/fronius-solar-api-json-)
 .
 
 Smart Meter: TS 65A-3
@@ -138,7 +138,7 @@ Grafana
 
 Grafana
 
-Basierend auf: [Powerwall Dashboard by jasonacox]([url](https://github.com/jasonacox/Powerwall-Dashboard))
+Basierend auf: [Powerwall Dashboard by jasonacox](https://github.com/jasonacox/Powerwall-Dashboard)
 
 Telegraf und Influx
 
@@ -152,9 +152,9 @@ Basierend auf:
 
 [Fronius-to-Influx by szymi-](url)
 
-S[olar Panel Monitoring with Telegraf](url)
+[Solar Panel Monitoring with Telegraf](url)
 
-H[ow I Created a Telegraf Plugin to Monitor Solar Panels](url)
+[How I Created a Telegraf Plugin to Monitor Solar Panels](url)
 
 Readme Verbesserungen
 
