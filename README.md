@@ -4,7 +4,7 @@ Datenvisualisierung für Fronius
 
 Haftungsausschluss: Dieses Projekt richtet sich an fortgeschrittene Nutzer, die Erfahrung mit Datenvisualisierung und Fronius-Systemen haben. Es wird keine Unterstützung oder Garantie geboten. Nutzung auf eigene Verantwortung.
 
-Dieses README beschreibt, wie Daten von einem Fronius Symo GEN24 10.0 Wechselrichter und einem Smart Meter TS 65A-3 in InfluxDB erfasst und mit Grafana visualisiert werden.
+Dieses README beschreibt, wie Daten von einem Fronius GEN24 4.0 Wechselrichter und einem Smart Meter TS 65A-3 in InfluxDB erfasst und mit Grafana visualisiert werden.
 
 Fronius Setup
 
@@ -147,6 +147,8 @@ Telegraf
 [InfluxDB](url)
 
 Basierend auf:
+
+[chpro](url)
 
 [Fronius-to-Influx by szymi-](url)
 
