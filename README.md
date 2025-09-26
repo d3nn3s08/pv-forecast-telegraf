@@ -2,6 +2,8 @@
 
 **Fronius Gen24 + Grafana +Telegraf / Telegraf config and processors for Forecast.Solar daily PV forecast**
 
+> Diese grafana telegraf config leuft auf einen [Unraid](https://unraid.net/) Server 
+
 # Datenvisualisierung für Fronius
 
 Haftungsausschluss: Dieses Projekt richtet sich an fortgeschrittene Nutzer, die Erfahrung mit Datenvisualisierung und Fronius-Systemen haben. Es wird keine Unterstützung oder Garantie geboten. Nutzung auf eigene Verantwortung.
@@ -44,8 +46,8 @@ InfluxDB
 
 + Telegraf
 
-Telegraf importiert die Daten aus der Fronius JSON API und Forecast-Daten von forecast.solar, so wie weiter Daten vom Server 
-. Die vollständige Konfiguration befindet sich in telegraf.conf
+> Telegraf importiert die Daten aus der Fronius JSON API und Forecast-Daten von forecast.solar, so wie weiter Daten vom Server 
+. Die vollständige Konfiguration befindet sich in telegraf.conf nicht Gewünschte Optionen sind mit #  zu Deaktiviren
 
 
 Passe die InfluxDB-Ausgabe in Telegraf nach Bedarf an:
@@ -53,7 +55,7 @@ Passe die InfluxDB-Ausgabe in Telegraf nach Bedarf an:
     urls = ["http://127.0.0.1:8086"]
     token = "change_me"
     organization = "default"
-`Hinweis: Die IP des  GEN24 4.0 wird in meinem Netzwerk über die IP in der Konfiguration.
+`Hinweis: 
 
 # Forecast
 
@@ -64,7 +66,7 @@ Passe ebenfalls die Links zu api.forecast.solar
 
 [Bestimmung des Azimuts](https://www.suncalc.org/#/50.7896,10.0052,9/2025.09.20/09:22/1/0)
 
-Energiepreise
+# Energiepreise
 
 Die Energiepreise werden benötigt, um Einsparungen zu berechnen. Die Genauigkeit ist auf tägliche Updates begrenzt. Die Preise werden per CSV über die InfluxDB-Importfunktion eingespielt. Beispiel CSV-Format:
 
@@ -73,13 +75,20 @@ Die Energiepreise werden benötigt, um Einsparungen zu berechnen. Die Genauigkei
 #datatype,string,long,dateTime:RFC3339,dateTime:RFC3339,dateTime:RFC3339,double,string,string,string
 #default,mean,,,,,,,,
 ,result,table,_start,_stop,_time,_value,_field,_measurement,unit
-,,0,2023-04-01T00:00:00+02:00,2023-04-01T00:00:00+02:00,2023-04-01T00:00:00+02:00,14.457,sell,electricity,Cent/kWh
-,,0,2023-07-01T00:00:00+02:00,2023-07-01T00:00:00+02:00,2023-07-01T00:00:00+02:00,13.691,sell,electricity,Cent/kWh
-,,0,2021-10-02T00:00:00+02:00,2021-10-02T00:00:00+02:00,2021-10-02T00:00:00+02:00,21.211,buy,electricity,Cent/kWh
+,,0,2023-04-01T00:00:00+02:00,2023-04-01T00:00:00+02:00,2023-04-01T00:00:00+02:00,0.0786,sell,electricity,Cent/kWh
+,,0,2023-07-01T00:00:00+02:00,2023-07-01T00:00:00+02:00,2023-07-01T00:00:00+02:00,0.0786,sell,electricity,Cent/kWh
+,,0,2021-10-02T00:00:00+02:00,2021-10-02T00:00:00+02:00,2021-10-02T00:00:00+02:00,00.40,buy,electricity,Cent/kWh
 ```
->Hinweis: Influxdb Line Protocol habe ich genutzt da ich feste preiße nutze bzw. habe eine Datei so wie ein script für die automation ist in Arbeit 
+<img width="2140" height="765" alt="energy_cost_dashboard" src="https://github.com/user-attachments/assets/ac5877b3-93fc-429f-bae8-c65ebc184bd1" />
+
+
+
+>Hinweis: Influxdb Line Protocol habe ich genutzt da ich feste preiße nutze bzw. habe eine Datei so wie ein script für die automation ist in Arbeit
+>
+>Eine umrechnung ist nicht Erfoderlich aus man gibt sell und buy in € an und nicht wie ich in cent zb 12.14€  
 
 [Grafana](https://grafana.com/)
+
 [Plugins](https://grafana.com/grafana/plugins/)
 
 
@@ -94,41 +103,49 @@ Die Energiepreise werden benötigt, um Einsparungen zu berechnen. Die Genauigkei
 
 [Sun and Moon by fetzerch](https://github.com/fetzerch/grafana-sunandmoon-datasource)
 
-Datenquellen
+# Datenquellen
 
 Konfiguriere folgende Datenquellen:
 
 InfluxDB
 
-InfluxDB auf Bucket energyprices
++ inverter
+  
++ home_assistant (optional)
 
-InfluxDB auf Bucket inverter
++ Server (optional)
 
-InfluxDB auf Bucket pvforecast
++ smarthome (optional)
 
->Hinweis: Query Language muss auf InfluxQL gesetzt werden.
->Hinweis: Verwende für den Zugriff den Header Authorization mit dem Wert Token YOUR_TOKEN. Ersetze YOUR_TOKEN durch dein InfluxDB-Token. (InfluxDB v2 API Dokumentation)
++ pvforecast
 
-![Dashboard](grafana/Bilder/datasource_settings.png)
++ Telegraf
+
+
+> **_NOTE:_** Query Language muss auf InfluxQL gesetzt werden.
+Verwende für den Zugriff den Header Authorization mit dem Wert Token YOUR_TOKEN. Ersetze YOUR_TOKEN durch dein InfluxDB-Token. (InfluxDB v2 API Dokumentation)
+
+<img width="838" height="1188" alt="datasource_settings" src="https://github.com/user-attachments/assets/9acef4c3-4d3c-4170-8812-ffa9280d845c" />
+
+
 
 >Hinweis: Eventuell erscheint die Meldung „Database not found“. Mappe dann InfluxDB v2 Buckets zu v1-Datenbanken. Siehe Setting up InfluxDB v2 (Flux) with InfluxQL in Grafana
  für Details. Bucket-IDs erhält man mit influx bucket list.
 
 # Weitere Quellen
 
-Infinity Datasource (keine weitere Konfiguration)
+Infinity Datasource (keine weitere Konfiguration notwändig)
 
 Sun and Moon (Latitude/Longitude anpassen)
 
 >Hinweis: Die IP des  GEN24 4.0  Power Flow-Panel und Battery & Grid-Panel an .
+<img width="2177" height="446" alt="power_flow_panel_settings" src="https://github.com/user-attachments/assets/142ac868-9ed5-41a1-ab02-a3eb8dad2802" />
 
 Dashboard
 
 Die Dashboards können aus folgenden Dateien importiert werden:
 
 
-[adfasdasda](url)
-[dasdasdasda](url)
 
 Import in Grafana:
 
@@ -143,7 +160,7 @@ Standardmäßig zeigt das Dashboard den aktuellen Tag und aktualisiert alle 5 Se
 
 
 Dashboard Screenshots
-![Dashboard](grafana/Bilder/dashboard.png)
+
 
 Credits
 Grafana
@@ -152,11 +169,11 @@ Grafana
 
 Basierend auf: [Powerwall Dashboard by jasonacox](https://github.com/jasonacox/Powerwall-Dashboard)
 
-Telegraf und Influx
+[Telegraf ](https://github.com/influxdata/telegraf)
 
-Telegraf
+[Influx](https://www.influxdata.com/lp/influxdb-database-de/?cq_con=173719674632&cq_term=influxdb&cq_med=&cq_plac=&cq_net=g&cq_plt=gp&gad_campaignid=22102419547)
 
-[InfluxDB](url)
+
 
 # Basierend auf:
 
