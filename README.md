@@ -1,6 +1,6 @@
  ### pv-forecast-telegraf
 
-**Fronius Gen24 + Grafana +Telegraf / Telegraf config and processors for Forecast.Solar daily PV forecast**
+**Fronius Gen24 + Grafana +Telegraf / Telegraf config and processors für Forecast.Solar daily PV forecast**
 
 > Diese grafana telegraf config leuft auf einen [Unraid](https://unraid.net/) Server 
 
@@ -46,8 +46,12 @@ InfluxDB
 
 + Telegraf
 
-> Telegraf importiert die Daten aus der Fronius JSON API und Forecast-Daten von forecast.solar, so wie weiter Daten vom Server 
+> Hinweis: Telegraf importiert die Daten aus der Fronius JSON API und Forecast-Daten von forecast.solar, so wie weiter Daten vom Server 
 . Die vollständige Konfiguration befindet sich in telegraf.conf nicht Gewünschte Optionen sind mit #  zu Deaktiviren
+>
+> so wie eine überwarung von Telegraf um fehler zu finden
+
+<img width="1644" height="905" alt="Screenshot 2025-09-26 180816" src="https://github.com/user-attachments/assets/6e840aa8-0e49-45ca-a18d-5b1fcacfa0bb" />
 
 
 Passe die InfluxDB-Ausgabe in Telegraf nach Bedarf an:
@@ -141,7 +145,8 @@ Sun and Moon (Latitude/Longitude anpassen)
 >Hinweis: Die IP des  GEN24 4.0  Power Flow-Panel und Battery & Grid-Panel an .
 <img width="2177" height="446" alt="power_flow_panel_settings" src="https://github.com/user-attachments/assets/142ac868-9ed5-41a1-ab02-a3eb8dad2802" />
 
-Dashboard
+
+
 
 Die Dashboards können aus folgenden Dateien importiert werden:
 
