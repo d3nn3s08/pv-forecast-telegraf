@@ -23,7 +23,7 @@ Dieses README beschreibt, wie Daten von einem Fronius GEN24 4.0 Wechselrichter u
 
 >Hinweis: Alle Grafana-Konfigurationen zu Minimal- und Maximalwerten sind auf dieses Setup abgestimmt.
 
-Telegraf, InfluxDB und Grafana Installation
+# Telegraf, InfluxDB und Grafana Installation
 
 Die Einrichtung des TIG-Stacks (Telegraf, InfluxDB, Grafana) kann über beliebige Anleitungen erfolgen, z. B. diese Suche
 .
@@ -33,16 +33,19 @@ InfluxDB
 - Es wurden folgende Buckets in InfluxDB angelegt:
 
 + inverter
+  
++ home_assistant (optional)
+
++ Server (optional)
+
++ smarthome (optional)
 
 + pvforecast
 
-+ energyprices
++ Telegraf
 
-+ Datenimport
-
-Telegraf importiert die Daten aus der Fronius JSON API und Forecast-Daten von forecast.solar
+Telegraf importiert die Daten aus der Fronius JSON API und Forecast-Daten von forecast.solar, so wie weiter Daten vom Server 
 . Die vollständige Konfiguration befindet sich in telegraf.conf
-.
 
 
 Passe die InfluxDB-Ausgabe in Telegraf nach Bedarf an:
@@ -74,10 +77,10 @@ Die Energiepreise werden benötigt, um Einsparungen zu berechnen. Die Genauigkei
 ,,0,2023-07-01T00:00:00+02:00,2023-07-01T00:00:00+02:00,2023-07-01T00:00:00+02:00,13.691,sell,electricity,Cent/kWh
 ,,0,2021-10-02T00:00:00+02:00,2021-10-02T00:00:00+02:00,2021-10-02T00:00:00+02:00,21.211,buy,electricity,Cent/kWh
 ```
->Hinweis: Influxdb Line Protocol habe ich genutzt da ich feste preiße nutze bzw. habe
+>Hinweis: Influxdb Line Protocol habe ich genutzt da ich feste preiße nutze bzw. habe eine Datei so wie ein script für die automation ist in Arbeit 
 
-Grafana
-Plugins
+[Grafana](https://grafana.com/)
+[Plugins](https://grafana.com/grafana/plugins/)
 
 
 
@@ -85,7 +88,7 @@ Plugins
 
 
 
-Sun and Moon by fetzerch
+[Sun and Moon by fetzerch](https://grafana.com/grafana/plugins/fetzerch-sunandmoon-datasource/)
 
 [Infinity by Sriramajeyam Sugumaran](https://grafana.com/docs/plugins/yesoreyeram-infinity-datasource/latest/)
 
@@ -110,7 +113,7 @@ InfluxDB auf Bucket pvforecast
 >Hinweis: Eventuell erscheint die Meldung „Database not found“. Mappe dann InfluxDB v2 Buckets zu v1-Datenbanken. Siehe Setting up InfluxDB v2 (Flux) with InfluxQL in Grafana
  für Details. Bucket-IDs erhält man mit influx bucket list.
 
-Weitere Quellen
+# Weitere Quellen
 
 Infinity Datasource (keine weitere Konfiguration)
 
@@ -154,7 +157,7 @@ Telegraf
 
 [InfluxDB](url)
 
-Basierend auf:
+# Basierend auf:
 
 [chpro](url)
 
@@ -166,4 +169,3 @@ Basierend auf:
 
 Readme Verbesserungen
 
-Diese README-Version wurde von ChatGPT für bessere Lesbarkeit und klare Formatierung überarbeitet.
