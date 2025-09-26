@@ -2,7 +2,9 @@
 
 **Fronius Gen24 + Grafana +Telegraf / Telegraf config and processors für Forecast.Solar daily PV forecast**
 
-> Diese grafana telegraf config leuft auf einen [Unraid](https://unraid.net/) Server 
+> Diese grafana telegraf config leuft auf einen [Unraid](https://unraid.net/) Server
+>
+> Grafan selber Leuft in einer VM über Home assistant
 
 # Datenvisualisierung für Fronius
 
