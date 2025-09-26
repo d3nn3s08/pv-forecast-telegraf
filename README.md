@@ -109,6 +109,7 @@ InfluxDB auf Bucket pvforecast
 >Hinweis: Query Language muss auf InfluxQL gesetzt werden.
 >Hinweis: Verwende für den Zugriff den Header Authorization mit dem Wert Token YOUR_TOKEN. Ersetze YOUR_TOKEN durch dein InfluxDB-Token. (InfluxDB v2 API Dokumentation)
 
+![Dashboard](grafana/Bilder/datasource_settings.png)
 
 >Hinweis: Eventuell erscheint die Meldung „Database not found“. Mappe dann InfluxDB v2 Buckets zu v1-Datenbanken. Siehe Setting up InfluxDB v2 (Flux) with InfluxQL in Grafana
  für Details. Bucket-IDs erhält man mit influx bucket list.
@@ -142,7 +143,7 @@ Standardmäßig zeigt das Dashboard den aktuellen Tag und aktualisiert alle 5 Se
 
 
 Dashboard Screenshots
-
+![Dashboard](grafana/Bilder/dashboard.png)
 
 Credits
 Grafana
