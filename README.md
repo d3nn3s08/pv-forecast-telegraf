@@ -61,7 +61,7 @@ Passe die InfluxDB-Ausgabe in Telegraf nach Bedarf an:
     urls = ["http://127.0.0.1:8086"]
     token = "change_me"
     organization = "default"
-`Hinweis: 
+`
 
 # Forecast
 
@@ -89,7 +89,8 @@ Die Energiepreise werden benötigt, um Einsparungen zu berechnen. Die Genauigkei
 
 
 
->Hinweis: Influxdb Line Protocol habe ich genutzt da ich feste preiße nutze bzw. habe eine Datei so wie ein script für die automation ist in Arbeit
+>Hinweis: Influxdb Line Protocol habe ich genutzt da ich feste preiße nutze 
+Eine Datei so wie ein script für die automation ist in Arbeit
 >
 >Eine umrechnung ist nicht Erfoderlich aus man gibt sell und buy in € an und nicht wie ich in cent zb 12.14€
 >dann ist bei der kosten berechnung diesen code 
