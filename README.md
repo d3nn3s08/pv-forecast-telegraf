@@ -173,6 +173,7 @@ Standardmäßig zeigt das Dashboard den aktuellen Tag und aktualisiert alle 5 Se
 
 Dashboard Screenshots
 
+<img width="1907" height="1004" alt="Screenshot 2025-09-27 113530" src="https://github.com/user-attachments/assets/1363bc29-57aa-4620-9bed-92c605ea8850" />
 
 Credits
 Grafana
