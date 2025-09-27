@@ -199,5 +199,5 @@ Basierend auf: [Powerwall Dashboard by jasonacox](https://github.com/jasonacox/P
 
 [How I Created a Telegraf Plugin to Monitor Solar Panels](url)
 
-Readme Verbesserungen
+
 
