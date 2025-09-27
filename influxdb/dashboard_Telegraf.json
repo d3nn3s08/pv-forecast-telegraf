@@ -1,1 +1,716 @@
-
+[
+  {
+    "apiVersion": "influxdata.com/v2alpha1",
+    "kind": "Dashboard",
+    "metadata": {
+      "name": "jovial-knuth-ae6001"
+    },
+    "spec": {
+      "charts": [
+        {
+          "colors": [
+            {
+              "name": "laser",
+              "type": "text",
+              "hex": "#00C9FF"
+            }
+          ],
+          "decimalPlaces": 2,
+          "height": 3,
+          "kind": "Single_Stat",
+          "name": "Agent - Metrics Gathered",
+          "queries": [
+            {
+              "query": "from(bucket: \"Telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"internal_agent\")\n  |> filter(fn: (r) => r._field == \"metrics_gathered\")"
+            }
+          ],
+          "staticLegend": {},
+          "width": 3
+        },
+        {
+          "axes": [
+            {
+              "base": "10",
+              "name": "x",
+              "scale": "linear"
+            },
+            {
+              "base": "10",
+              "name": "y",
+              "scale": "linear"
+            }
+          ],
+          "colors": [
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#31C0F6"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#A500A5"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#FF7E27"
+            }
+          ],
+          "geom": "line",
+          "height": 3,
+          "kind": "Xy",
+          "name": "Agent - Metrics gathered vs written per second",
+          "position": "overlaid",
+          "queries": [
+            {
+              "query": "import \"experimental/aggregate\"\n  from(bucket: \"Telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"internal_agent\")\n  |> filter(fn: (r) => r._field == \"metrics_gathered\" or r._field == \"metrics_written\")\n  |> aggregate.rate(every: v.windowPeriod, unit: 1s, groupColumns: [\"_field\"])"
+            }
+          ],
+          "staticLegend": {},
+          "width": 4,
+          "xCol": "_time",
+          "yCol": "_value",
+          "yPos": 3
+        },
+        {
+          "axes": [
+            {
+              "base": "10",
+              "name": "x",
+              "scale": "linear"
+            },
+            {
+              "base": "10",
+              "name": "y",
+              "scale": "linear"
+            }
+          ],
+          "colors": [
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#31C0F6"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#A500A5"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#FF7E27"
+            }
+          ],
+          "geom": "step",
+          "height": 3,
+          "kind": "Xy",
+          "name": "Inputs - metrics gathered per input per minute",
+          "position": "overlaid",
+          "queries": [
+            {
+              "query": "import \"experimental/aggregate\"\nfrom(bucket: \"Telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"internal_gather\")\n  |> filter(fn: (r) => r._field == \"metrics_gathered\")\n  |> derivative(unit: v.windowPeriod, nonNegative: true, columns: [\"_value\"], timeColumn: \"_time\")\n  |> aggregateWindow(every: duration(v: int(v: v.windowPeriod) * 6), fn: sum)"
+            }
+          ],
+          "staticLegend": {},
+          "width": 4,
+          "xCol": "_time",
+          "yCol": "_value",
+          "yPos": 6
+        },
+        {
+          "axes": [
+            {
+              "base": "10",
+              "name": "x",
+              "scale": "linear"
+            },
+            {
+              "base": "10",
+              "name": "y",
+              "scale": "linear"
+            }
+          ],
+          "colors": [
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#31C0F6"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#A500A5"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#FF7E27"
+            }
+          ],
+          "geom": "line",
+          "height": 3,
+          "kind": "Xy",
+          "name": "Output - Write buffer size",
+          "position": "overlaid",
+          "queries": [
+            {
+              "query": "from(bucket: \"Telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"internal_write\")\n  |> filter(fn: (r) => r._field == \"buffer_size\")\n  |> aggregateWindow(every: v.windowPeriod, fn: max)"
+            }
+          ],
+          "staticLegend": {},
+          "width": 4,
+          "xCol": "_time",
+          "yCol": "_value",
+          "yPos": 9
+        },
+        {
+          "axes": [
+            {
+              "base": "10",
+              "name": "x",
+              "scale": "linear"
+            },
+            {
+              "base": "10",
+              "name": "y",
+              "scale": "linear"
+            }
+          ],
+          "colors": [
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#31C0F6"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#A500A5"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#FF7E27"
+            }
+          ],
+          "geom": "line",
+          "height": 2,
+          "kind": "Xy",
+          "name": "memory allocations",
+          "position": "overlaid",
+          "queries": [
+            {
+              "query": "from(bucket: \"Telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"internal_memstats\")\n  |> filter(fn: (r) => r._field == \"mallocs\")\n  |> derivative(unit: v.windowPeriod, nonNegative: true)\n  |> yield(name: \"nonnegative derivative\")"
+            }
+          ],
+          "staticLegend": {},
+          "width": 4,
+          "xCol": "_time",
+          "yCol": "_value",
+          "yPos": 12
+        },
+        {
+          "colors": [
+            {
+              "name": "laser",
+              "type": "text",
+              "hex": "#00C9FF"
+            }
+          ],
+          "decimalPlaces": 2,
+          "height": 3,
+          "kind": "Single_Stat",
+          "name": "Agent - Metrics Written",
+          "queries": [
+            {
+              "query": "from(bucket: \"Telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"internal_agent\")\n  |> filter(fn: (r) => r._field == \"metrics_written\")"
+            }
+          ],
+          "staticLegend": {},
+          "width": 3,
+          "xPos": 3
+        },
+        {
+          "axes": [
+            {
+              "base": "10",
+              "name": "x",
+              "scale": "linear"
+            },
+            {
+              "base": "10",
+              "name": "y",
+              "scale": "linear"
+            }
+          ],
+          "colors": [
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#31C0F6"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#A500A5"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#FF7E27"
+            }
+          ],
+          "geom": "line",
+          "height": 3,
+          "kind": "Xy",
+          "name": "Agent - input plugin errors",
+          "position": "overlaid",
+          "queries": [
+            {
+              "query": "import \"experimental/aggregate\"\nfrom(bucket: \"Telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"internal_agent\")\n  |> filter(fn: (r) => r._field == \"gather_errors\")\n  |> group()\n  |> aggregateWindow(every: v.windowPeriod, fn: sum)\n  |> derivative(unit: v.windowPeriod, nonNegative: true, columns: [\"_value\"], timeColumn: \"_time\")"
+            }
+          ],
+          "staticLegend": {},
+          "width": 4,
+          "xCol": "_time",
+          "xPos": 4,
+          "yCol": "_value",
+          "yPos": 3
+        },
+        {
+          "axes": [
+            {
+              "base": "10",
+              "name": "x",
+              "scale": "linear"
+            },
+            {
+              "base": "10",
+              "name": "y",
+              "scale": "linear"
+            }
+          ],
+          "colors": [
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#31C0F6"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#A500A5"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#FF7E27"
+            }
+          ],
+          "geom": "line",
+          "height": 3,
+          "kind": "Xy",
+          "name": "Inputs - Errors per input",
+          "position": "overlaid",
+          "queries": [
+            {
+              "query": "import \"experimental/aggregate\"\nfrom(bucket: \"Telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"internal_gather\")\n  |> filter(fn: (r) => r._field == \"errors\")\n  |> aggregateWindow(every: v.windowPeriod, fn: sum)\n  |> derivative(unit: v.windowPeriod, nonNegative: true, columns: [\"_value\"], timeColumn: \"_time\")"
+            }
+          ],
+          "staticLegend": {},
+          "width": 4,
+          "xCol": "_time",
+          "xPos": 4,
+          "yCol": "_value",
+          "yPos": 6
+        },
+        {
+          "axes": [
+            {
+              "base": "10",
+              "name": "x",
+              "scale": "linear"
+            },
+            {
+              "base": "10",
+              "name": "y",
+              "scale": "linear"
+            }
+          ],
+          "colors": [
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#31C0F6"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#A500A5"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#FF7E27"
+            }
+          ],
+          "geom": "line",
+          "height": 3,
+          "kind": "Xy",
+          "name": "Output - Errors per output",
+          "position": "overlaid",
+          "queries": [
+            {
+              "query": "import \"experimental/aggregate\"\nfrom(bucket: \"Telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"internal_write\")\n  |> filter(fn: (r) => r._field == \"errors\")\n  |> aggregateWindow(every: v.windowPeriod, fn: max)\n  |> derivative(unit: v.windowPeriod, nonNegative: true, columns: [\"_value\"], timeColumn: \"_time\")"
+            }
+          ],
+          "staticLegend": {},
+          "width": 4,
+          "xCol": "_time",
+          "xPos": 4,
+          "yCol": "_value",
+          "yPos": 9
+        },
+        {
+          "axes": [
+            {
+              "base": "10",
+              "name": "x",
+              "scale": "linear"
+            },
+            {
+              "base": "2",
+              "name": "y",
+              "scale": "linear"
+            }
+          ],
+          "colors": [
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#31C0F6"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#A500A5"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#FF7E27"
+            }
+          ],
+          "geom": "line",
+          "height": 2,
+          "kind": "Xy",
+          "name": "Garbage Collection",
+          "position": "overlaid",
+          "queries": [
+            {
+              "query": "from(bucket: \"Telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"internal_memstats\")\n  |> filter(fn: (r) => r._field == \"num_gc\")\n  |> derivative(unit: v.windowPeriod, nonNegative: true)\n  |> yield(name: \"nonnegative derivative\")"
+            }
+          ],
+          "staticLegend": {},
+          "width": 4,
+          "xCol": "_time",
+          "xPos": 4,
+          "yCol": "_value",
+          "yPos": 12
+        },
+        {
+          "axes": [
+            {
+              "base": "10",
+              "name": "x",
+              "scale": "linear"
+            },
+            {
+              "base": "10",
+              "name": "y",
+              "scale": "linear"
+            }
+          ],
+          "colorizeRows": true,
+          "colors": [
+            {
+              "id": "base",
+              "name": "viridian",
+              "type": "background",
+              "hex": "#32B08C"
+            },
+            {
+              "id": "GrMCt_mlWZcdkSrCQCx6g",
+              "name": "viridian",
+              "type": "background",
+              "hex": "#32B08C"
+            },
+            {
+              "id": "lzWNBYDUa9HQuvclkX4EJ",
+              "name": "ruby",
+              "type": "background",
+              "hex": "#BF3D5E",
+              "value": 1
+            }
+          ],
+          "decimalPlaces": 2,
+          "height": 3,
+          "heightRatio": 0.2,
+          "hoverDimension": "auto",
+          "kind": "Single_Stat_Plus_Line",
+          "legendColorizeRows": true,
+          "legendOpacity": 1,
+          "legendOrientationThreshold": 100000000,
+          "name": "Errors",
+          "opacity": 1,
+          "orientationThreshold": 100000000,
+          "position": "overlaid",
+          "queries": [
+            {
+              "query": "from(bucket: \"Telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"internal_write\" or r._measurement == \"internal_agent\")\n  |> filter(fn: (r) => r._field == \"errors\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean)  \n  |> derivative(unit: v.windowPeriod, nonNegative: true, columns: [\"_value\"], timeColumn: \"_time\")"
+            }
+          ],
+          "staticLegend": {
+            "colorizeRows": true,
+            "heightRatio": 0.2,
+            "opacity": 1,
+            "orientationThreshold": 100000000,
+            "widthRatio": 1
+          },
+          "width": 3,
+          "widthRatio": 1,
+          "xCol": "_time",
+          "xPos": 6,
+          "yCol": "_value"
+        },
+        {
+          "axes": [
+            {
+              "base": "10",
+              "name": "x",
+              "scale": "linear"
+            },
+            {
+              "base": "10",
+              "name": "y",
+              "scale": "linear"
+            }
+          ],
+          "colors": [
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#31C0F6"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#A500A5"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#FF7E27"
+            }
+          ],
+          "geom": "line",
+          "height": 3,
+          "kind": "Xy",
+          "name": "Agent - Metrics Dropped",
+          "position": "overlaid",
+          "queries": [
+            {
+              "query": "from(bucket: \"Telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"internal_agent\")\n  |> filter(fn: (r) => r._field == \"metrics_dropped\")\n  |> group()\n  |> aggregateWindow(every: v.windowPeriod, fn: sum)\n  |> derivative(unit: v.windowPeriod, nonNegative: true, columns: [\"_value\"], timeColumn: \"_time\")"
+            }
+          ],
+          "staticLegend": {},
+          "width": 4,
+          "xCol": "_time",
+          "xPos": 8,
+          "yCol": "_value",
+          "yPos": 3
+        },
+        {
+          "axes": [
+            {
+              "base": "10",
+              "name": "x",
+              "scale": "linear"
+            },
+            {
+              "base": "10",
+              "name": "y",
+              "scale": "linear",
+              "suffix": " ms"
+            }
+          ],
+          "colors": [
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#31C0F6"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#A500A5"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#FF7E27"
+            }
+          ],
+          "geom": "line",
+          "height": 3,
+          "kind": "Xy",
+          "name": "Inputs - Time to gather metrics",
+          "position": "overlaid",
+          "queries": [
+            {
+              "query": "from(bucket: \"Telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"internal_gather\")\n  |> filter(fn: (r) => r._field == \"gather_time_ns\")\n  |> map(fn: (r) => ({ r with _value: r._value / 1000000 }))\n  |> aggregateWindow(every: v.windowPeriod, fn: max)"
+            }
+          ],
+          "staticLegend": {},
+          "width": 4,
+          "xCol": "_time",
+          "xPos": 8,
+          "yCol": "_value",
+          "yPos": 6
+        },
+        {
+          "axes": [
+            {
+              "base": "10",
+              "name": "x",
+              "scale": "linear"
+            },
+            {
+              "base": "10",
+              "label": "Seconds",
+              "name": "y",
+              "scale": "linear"
+            }
+          ],
+          "colors": [
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#31C0F6"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#A500A5"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#FF7E27"
+            }
+          ],
+          "geom": "line",
+          "height": 3,
+          "kind": "Xy",
+          "name": "Outputs - Write time",
+          "position": "overlaid",
+          "queries": [
+            {
+              "query": "import \"date\"\nfrom(bucket: \"Telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"internal_write\")\n  |> filter(fn: (r) => r._field == \"write_time_ns\")\n  |> aggregateWindow(every: v.windowPeriod, fn: max)"
+            }
+          ],
+          "staticLegend": {},
+          "width": 4,
+          "xCol": "_time",
+          "xPos": 8,
+          "yCol": "_value",
+          "yPos": 9
+        },
+        {
+          "axes": [
+            {
+              "base": "10",
+              "name": "x",
+              "scale": "linear"
+            },
+            {
+              "base": "10",
+              "name": "y",
+              "scale": "linear"
+            }
+          ],
+          "colors": [
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#31C0F6"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#A500A5"
+            },
+            {
+              "name": "Nineteen Eighty Four",
+              "type": "scale",
+              "hex": "#FF7E27"
+            }
+          ],
+          "geom": "line",
+          "height": 2,
+          "kind": "Xy",
+          "name": "Heap Memory in use",
+          "position": "overlaid",
+          "queries": [
+            {
+              "query": "from(bucket: \"Telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"internal_memstats\")\n  |> filter(fn: (r) => r._field == \"heap_in_use_bytes\")"
+            }
+          ],
+          "staticLegend": {},
+          "width": 4,
+          "xPos": 8,
+          "yPos": 12
+        },
+        {
+          "axes": [
+            {
+              "base": "10",
+              "name": "x",
+              "scale": "linear"
+            },
+            {
+              "base": "10",
+              "name": "y",
+              "scale": "linear"
+            }
+          ],
+          "colors": [
+            {
+              "name": "laser",
+              "type": "text",
+              "hex": "#00C9FF"
+            }
+          ],
+          "decimalPlaces": 0,
+          "height": 3,
+          "kind": "Single_Stat_Plus_Line",
+          "name": "Agent - Metrics dropped",
+          "position": "overlaid",
+          "queries": [
+            {
+              "query": "import \"experimental/aggregate\"\nimport \"experimental/query\"\nfrom(bucket: \"Telegraf\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._field == \"metrics_dropped\")\n  |> aggregate.rate(every: v.windowPeriod, unit: 1s)\n  |> aggregateWindow(every: v.windowPeriod, fn: sum)"
+            }
+          ],
+          "staticLegend": {},
+          "width": 3,
+          "xCol": "_time",
+          "xPos": 9,
+          "yCol": "_value"
+        }
+      ],
+      "name": "Telegraf"
+    }
+  }
+]
