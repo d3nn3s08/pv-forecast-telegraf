@@ -14,7 +14,7 @@ Dieses README beschreibt, wie Daten von einem Fronius GEN24 4.0 Wechselrichter u
 
 - Fronius Setup
 
-+ Wechselrichter: Fronius GEN24 4.0 (Firmware >= ROW 1.36.6-1)
++ Wechselrichter: Fronius GEN24 4.0 (Firmware >= ROW 1.38.7-1 Standt 27.09.2025)
 
 + Fronius JSON API (v1) aktiviert. Details siehe [Fronius Solar API Dokumentation](https://www.fronius.com/en/solar-energy/installers-partners/technical-data/all-products/system-monitoring/open-interfaces/fronius-solar-api-json-)
 .
@@ -91,7 +91,13 @@ Die Energiepreise werden benötigt, um Einsparungen zu berechnen. Die Genauigkei
 
 >Hinweis: Influxdb Line Protocol habe ich genutzt da ich feste preiße nutze bzw. habe eine Datei so wie ein script für die automation ist in Arbeit
 >
->Eine umrechnung ist nicht Erfoderlich aus man gibt sell und buy in € an und nicht wie ich in cent zb 12.14€  
+>Eine umrechnung ist nicht Erfoderlich aus man gibt sell und buy in € an und nicht wie ich in cent zb 12.14€
+>dann ist bei der kosten berechnung diesen code 
+>
+>```SELECT last("sell")/100 as sellEuroWh, last("buy")/100 as buyEuroWh FROM "autogen"."electricity" GROUP BY time(1d) fill(previous) tz('${tz:raw}')```
+>
+>durch ```SELECT last("sell")/10000 as sellEuroWh, last("buy")/10000 as buyEuroWh FROM "autogen"."electricity" GROUP BY time(1d) fill(previous) tz('${tz:raw}')```
+>zu erstezen!
 
 [Grafana](https://grafana.com/)
 
@@ -107,7 +113,6 @@ Die Energiepreise werden benötigt, um Einsparungen zu berechnen. Die Genauigkei
 
 [Infinity by Sriramajeyam Sugumaran](https://grafana.com/docs/plugins/yesoreyeram-infinity-datasource/latest/)
 
-[Sun and Moon by fetzerch](https://github.com/fetzerch/grafana-sunandmoon-datasource)
 
 # Datenquellen
 
