@@ -97,7 +97,7 @@ Eine Datei so wie ein script für die automation ist in Arbeit
 >
 >```SELECT last("sell")/100 as sellEuroWh, last("buy")/100 as buyEuroWh FROM "autogen"."electricity" GROUP BY time(1d) fill(previous) tz('${tz:raw}')```
 >
->durch ```SELECT last("sell")/10000 as sellEuroWh, last("buy")/10000 as buyEuroWh FROM "autogen"."electricity" GROUP BY time(1d) fill(previous) tz('${tz:raw}')```
+>durch ```SELECT last("sell")/100000 as sellEuroWh, last("buy")/100000 as buyEuroWh FROM "autogen"."electricity" GROUP BY time(1d) fill(previous) tz('${tz:raw}')```
 >zu erstezen!
 
 [Grafana](https://grafana.com/)
